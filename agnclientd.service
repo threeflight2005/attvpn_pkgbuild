@@ -1,0 +1,8 @@
+[Unit]
+Description="ATT VPN service daemon"
+
+[Service]
+ExecStart=/opt/agns/bin/agnclientd
+
+[Install]
+WantedBy=multi-user.target"

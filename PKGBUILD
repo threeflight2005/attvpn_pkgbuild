@@ -23,6 +23,7 @@ makedepends=('rpmextract')
 options=('emptydirs')
 source=("ftp://ftp.attglobal.net/pub/custom/ibm_linux/${pkgname}-1.0-2.0.1.${pkgver}.i386.rpm")
 md5sums=('b108e2ae1ca65a338f0592a2684279bf')
+install='agnclient.install'
 
 build() {
   rpmextract.sh ${pkgname}-1.0-2.0.1.${pkgver}.i386.rpm
@@ -51,15 +52,6 @@ package() {
 
  mkdir -p -m 755 $pkgdir/usr/lib/systemd/system/
 
- echo "[Unit]
- Description="ATT VPN service daemon"
+ install -m644  $startdir/agnclientd.service ${pkgdir}/usr/lib/systemd/system || return 1
 
- [Service]
- ExecStart=/opt/agns/bin/agnclientd
- ExecStop=/usr/bin/pkill agnclientd
-
- [Install]
- WantedBy=multi-user.target" > $pkgdir/usr/lib/systemd/system/agnclientd.service
-
- chmod 755 $pkgdir/usr/lib/systemd/system/agnclientd.service
 }
