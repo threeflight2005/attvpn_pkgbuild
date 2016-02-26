@@ -35,20 +35,18 @@ package() {
  chmod 755 $pkgdir/opt/agns/bin/*
  mkdir -p -m 755 $pkgdir/usr/lib32/
 
- if [ !/usr/lib32/libpangox-1.0.so.0 ]
- then
-     ln -s /usr/lib/libpangox-1.0.so.0 $pkgdir/usr/lib32/libpangox-1.0.so.0
- elif [ /usr/lib32/libpangox-1.0.so.0 ]
+ if [ -e /usr/lib32/libpangox-1.0.so.0 ]
  then
      echo "/usr/lib32/libpangox-1.0.so.0 exist"
+ else
+   ln -s /usr/lib/libpangox-1.0.so.0 $pkgdir/usr/lib32/libpangox-1.0.so.0
  fi
 
- if [ !/usr/lib32/libssl.so.4 ]
- then
-     ln -s /usr/lib32/libssl.so $pkgdir/usr/lib32/libssl.so.4
- elif [ /usr/lib32/libssl.so.4 ]
+ if [ -e /usr/lib32/libssl.so.4 ]
  then
      echo "/usr/lib32/libssl.so.4 exits"
+ else
+     ln -s /usr/lib32/libssl.so $pkgdir/usr/lib32/libssl.so.4
  fi
 
  mkdir -p -m 755 $pkgdir/usr/lib/systemd/system/
@@ -58,7 +56,7 @@ package() {
 
  [Service]
  ExecStart=/opt/agns/bin/agnclientd
- ExecStop=if [ /var/run/agnclientd.pid ] ; then /usr/bin/kill -9 `cat /var/run/agnclientd.pid` ; elif [ !/var/run/agnclientd.pid ] ; then exit 0 ; fi
+ ExecStop=/usr/bin/kill -9
  PIDfile=/var/run/agnclientd.pid
 
  [Install]
