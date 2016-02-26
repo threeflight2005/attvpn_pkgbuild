@@ -56,8 +56,7 @@ package() {
 
  [Service]
  ExecStart=/opt/agns/bin/agnclientd
- ExecStop=/usr/bin/kill -9
- PIDfile=/var/run/agnclientd.pid
+ ExecStop=/usr/bin/pkill agnclientd
 
  [Install]
  WantedBy=multi-user.target" > $pkgdir/usr/lib/systemd/system/agnclientd.service
