@@ -1,0 +1,11 @@
+[Unit]
+Description="ATT VPN service logging daemon"
+
+[Service]
+User=root
+Type=forking
+ExecStart=/opt/agns/bin/agnLogd
+PIDFile=/var/run/agnLogd.pid
+
+[Install]
+WantedBy=multi-user.target

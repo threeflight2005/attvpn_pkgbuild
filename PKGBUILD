@@ -67,5 +67,6 @@ package() {
  mkdir -p -m 755 $pkgdir/usr/lib/systemd/system/
 
  install -m644  $startdir/agnclientd.service ${pkgdir}/usr/lib/systemd/system || return 1
+ install -m644  $startdir/agnLogd.service ${pkgdir}/usr/lib/systemd/system || return 1
 
 }
