@@ -2,7 +2,10 @@
 Description="ATT VPN service daemon"
 
 [Service]
+User=root
+Type=forking
 ExecStart=/opt/agns/bin/agnclientd
+PIDFile=/var/run/agnclientd.pid
 
 [Install]
-WantedBy=multi-user.target"
+WantedBy=multi-user.target

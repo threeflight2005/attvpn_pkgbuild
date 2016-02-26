@@ -3,9 +3,9 @@ post_install() {
 
 cat << EOF
   -------------------------------------------------------------
-   To enable for systemd, do systemctl enable agnclientd
+   To enable for systemd, do 'systemctl enable agnclientd'
    The daemon must be running for ATT VPN Client to fucntion
-   do systemctl start agnclientd and then launch the GUI
+   do 'systemctl start agnclientd' and then launch the GUI
   -------------------------------------------------------------
 EOF
 
