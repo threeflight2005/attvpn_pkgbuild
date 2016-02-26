@@ -50,6 +50,13 @@ package() {
      ln -s /usr/lib32/libssl.so $pkgdir/usr/lib32/libssl.so.4
  fi
 
+ if [ -e /usr/lib32/libcrypto.so.4 ]
+ then
+     echo "/usr/lib32/libssl.so.4 exits"
+ else
+     ln -s /usr/lib32/libcrypto.so.1.0.0 $pkgdir/usr/lib32/libcrypto.so.4
+ fi
+
  mkdir -p -m 755 $pkgdir/usr/lib/systemd/system/
 
  install -m644  $startdir/agnclientd.service ${pkgdir}/usr/lib/systemd/system || return 1

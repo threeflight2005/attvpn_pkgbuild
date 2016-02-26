@@ -4,7 +4,7 @@ Description="ATT VPN service daemon"
 [Service]
 User=root
 Type=forking
-ExecStart=/opt/agns/bin/agnclientd
+ExecStart=/opt/agns/bin/agnclientd && /opt/agns/bin/agnLogd
 PIDFile=/var/run/agnclientd.pid
 
 [Install]
